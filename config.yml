@@ -1,0 +1,14 @@
+:paypal:
+  :form:
+    :amount: 7
+    :business: seller_1282060105_biz@bylinebreak.com
+    :cmd: _xclick
+    :discount_rate: 0
+    :discount_rate2: 10
+    :cancel_return: http://afternoon-beach-58.heroku.com/cancel/
+    :cert_id: S5ZHYZWK6WYBQ
+    :currency_code: EUR
+    :item_name: BaseApp 1.x
+    :notify_url: http://afternoon-beach-58.heroku.com/ipn/
+    :return: http://afternoon-beach-58.heroku.com/thanks/
+  :url: https://www.sandbox.paypal.com/webscr
