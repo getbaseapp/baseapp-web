@@ -2,7 +2,7 @@ source :gemcutter
 
 gem 'sinatra', '1.0'
 
-#gem 'i18n', '0.4.1'
+gem 'i18n', '0.4.1'
 
 gem 'rest-client', '1.6.1'
 gem 'dm-core', '1.0.0'
