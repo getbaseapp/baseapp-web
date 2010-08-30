@@ -23,6 +23,7 @@ GEM
     do_sqlite3 (0.10.2)
       data_objects (= 0.10.2)
     extlib (0.9.15)
+    i18n (0.4.1)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
@@ -48,6 +49,7 @@ DEPENDENCIES
   dm-migrations (= 1.0.0)
   dm-sqlite-adapter (= 1.0.0)
   dm-timestamps (= 1.0.0)
+  i18n (= 0.4.1)
   pony (= 1.0)
   rest-client (= 1.6.1)
   sinatra (= 1.0)
