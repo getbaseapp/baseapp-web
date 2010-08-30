@@ -50,7 +50,7 @@ helpers do
 
   def email_registration(registration)
     Pony.mail(
-      :to               => registration[:email],
+      :to               => 'max@bylinebreak.com',
       :cc               => 'max@bylinebreak.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
