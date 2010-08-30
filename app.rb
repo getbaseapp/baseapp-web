@@ -48,7 +48,7 @@ helpers do
     rand(2**256).to_s(36)[0..24].upcase.scan(/.{5}/).to_a.join('-')
   end
 
-  def email_registration(registration)
+  def email_registration
     Pony.mail(
       :to               => 'max@bylinebreak.com',
       :cc               => 'max@bylinebreak.com',
@@ -99,10 +99,10 @@ post '/ipn/?' do
   params.update :cmd => '_notify-validate'
 
   if valid_purchase?(params)
-    registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
+    @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
 
-    if registration.save
-      email_registration(registration)
+    if @registration.save
+      email_registration
     end
   end
 end
