@@ -39,7 +39,6 @@ helpers do
     if purchase == 'VERIFIED'
       expected = {
         :payment_status => 'Completed'
-        #:receiver_email => STORE_CONFIG[:paypal][:business]
       }
       expected.keys.all? { |key| params[key] == expected[key] }
     end
