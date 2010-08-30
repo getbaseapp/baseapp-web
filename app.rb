@@ -56,7 +56,7 @@ helpers do
       :subject          => "Baseapp 1.x Serial",
       :body             => "This is your beautiful serial: #{ registration[:serial_num] }",
       :via => :smtp,
-      :via_options => {
+      :via_smtp => {
         :address          => 'smtp.sendgrid.net',
         :port             => '25',
         :authentication   => :plain,
