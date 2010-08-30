@@ -103,8 +103,12 @@ post '/ipn/?' do
   end
 end
 
+get '/issue/?' do
+  Serial.create(:transaction => '1234', :serial => '1234', :email => 'mschoening@me.com')
+end
+
 get '/activate/?' do
-  error(404, "Serial doesn't exist.") if Serial.count == 0
+  error(404, "Serial doesn't exist.") if Serial.first(:serial => params[:serial]).nil?
 
   json_string = { :serial => params[:serial] }.to_json
   OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
