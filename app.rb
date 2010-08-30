@@ -48,13 +48,13 @@ helpers do
     rand(2**256).to_s(36)[0..24].upcase.scan(/.{5}/).to_a.join('-')
   end
 
-  def email_registration(registration)
+  def email_registration(@registration)
     Pony.mail(
-      :to               => registration[:email],
+      :to               => @registration[:email],
       :cc               => 'max@bylinebreak.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
-      :body             => "This is your beautiful serial: #{ registration[:serial_num] }",
+      :body             => "This is your beautiful serial: #{ @registration[:serial_num] }",
       :via => :smtp,
       :via_smtp => {
         :address          => 'smtp.sendgrid.net',
