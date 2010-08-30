@@ -78,7 +78,7 @@ end
 
 DataMapper.auto_upgrade!
 
-get '/?' do
+get '/home/?' do
   @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
 
   erb :home
