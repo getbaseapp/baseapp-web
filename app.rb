@@ -3,11 +3,11 @@ require 'sinatra'
 
 require 'yaml'
 require 'erb'
-require 'rest_client'
+require 'rest-client'
 require 'dm-core'
-require 'dm-aggregates'
 require 'dm-migrations'
 require 'dm-timestamps'
+require 'dm-aggregates'
 require 'pony'
 require 'json'
 
