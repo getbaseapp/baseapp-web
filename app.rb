@@ -104,8 +104,10 @@ post '/ipn/?' do
 end
 
 get '/activate/?' do
-  error(404, "Serial doesn't exist.") if Serial.count(:serial => params[:serial]) == 0
+  Serial.count(:serial => params[:serial]).inspect
 
-  json_string = { :serial => params[:serial] }.to_json
-  OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
+  #error(404, "Serial doesn't exist.") if Serial.count(:serial => params[:serial]) == 0
+
+  #json_string = { :serial => params[:serial] }.to_json
+  #OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
 end
