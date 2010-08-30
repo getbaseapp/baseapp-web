@@ -37,23 +37,27 @@ helpers do
     purchase = RestClient.post STORE_CONFIG[:paypal][:url], params
 
     if purchase == 'VERIFIED'
-      expected = { :payment_status => 'Completed' }
+      expected = {
+        :payment_status => 'Completed',
+        :receiver_email => STORE_CONFIG[:paypal][:business]
+      }
       expected.keys.all? { |key| params[key] == expected[key] }
     end
   end
 
-  def generate_serial
+  def generate_serial_num
     rand(2**256).to_s(36)[0..24].upcase.scan(/.{5}/).to_a.join('-')
   end
 
-  def email_serial(serial)
+  def email_registration(registration)
     Pony.mail(
-      :to               => 'resetability@gmail.com',
+      :to               => registration[:email],
+      :cc               => 'max@bylinebreak.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
-      :body             => "This is your beautiful serial: #{ serial }",
+      :body             => "This is your beautiful serial: #{ registration[:serial] }",
       :via => :smtp,
-      :smtp => {
+      :via_options => {
         :address          => 'smtp.sendgrid.net',
         :port             => '25',
         :authentication   => :plain,
@@ -67,12 +71,12 @@ end
 
 DataMapper.setup(:default, (ENV["DATABASE_URL"] ||  "sqlite3://#{Dir.pwd}/development.sqlite"))
 
-class Serial
+class Registration
   include DataMapper::Resource
 
   property :transaction,    String, :length => 255, :key => true
   property :created_at,     DateTime
-  property :serial,         String, :length => 255
+  property :serial_num,     String, :length => 255
   property :email,          String, :length => 255
 end
 
@@ -96,17 +100,17 @@ post '/ipn/?' do
   params.update :cmd => '_notify-validate'
 
   if valid_purchase?(params)
-    @serial = Serial.new(:transaction => params[:txn_id], :serial => generate_serial, :email => params[:payer_email])
+    @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
 
-    if @serial.save
-      email_serial(@serial[:serial])
+    if @registration.save
+      email_registration(@registration)
     end
   end
 end
 
 get '/activate/?' do
-  error(404, "Serial doesn't exist.") if Serial.count(:serial => params[:serial]) == 0
+  error(404, "Serial doesn't exist.") if Registration.count(:serial_num => params[:serial_num]) == 0
 
-  json_string = { :serial => params[:serial] }.to_json
+  json_string = { :serial_num => params[:serial_num] }.to_json
   OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
 end
