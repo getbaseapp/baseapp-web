@@ -54,7 +54,7 @@ helpers do
       :cc               => 'max@bylinebreak.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
-      :body             => "This is your beautiful serial: #{ registration[:serial_num] }",
+      :body             => "This is your beautiful serial.",
       :via => :smtp,
       :via_smtp => {
         :address          => 'smtp.sendgrid.net',
