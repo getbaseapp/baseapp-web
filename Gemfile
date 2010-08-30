@@ -11,3 +11,5 @@ gem 'dm-sqlite-adapter', '1.0.0'
 gem 'dm-timestamps', '1.0.0'
 
 gem 'pony', '1.0'
+
+gem 'i18n'
