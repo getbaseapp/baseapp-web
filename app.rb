@@ -5,6 +5,7 @@ require 'yaml'
 require 'erb'
 require 'rest_client'
 require 'dm-core'
+require 'dm-aggregates'
 require 'dm-migrations'
 require 'dm-timestamps'
 require 'pony'
@@ -104,7 +105,7 @@ post '/ipn/?' do
 end
 
 get '/activate/?' do
-  error(404, "Serial doesn't exist.") if Serial.first(:serial => params[:serial]).nil?
+  error(404, "Serial doesn't exist.") if Serial.count(:serial => params[:serial]) == 0
 
   json_string = { :serial => params[:serial] }.to_json
   OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
