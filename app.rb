@@ -23,6 +23,7 @@ helpers do
   end
 
   def valid_purchase?(params)
+    params.update :cmd => '_notify-validate'
     purchase = RestClient.post STORE_CONFIG[:paypal][:url], params
 
     if purchase == 'VERIFIED'
@@ -40,10 +41,10 @@ helpers do
   def email_registration(registration)
     Pony.mail(
       :to               => registration[:email],
-      :cc               => 'mschoening@me.com',
+      :bcc              => 'mschoening@me.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
-      :body             => "Here is your beautiful serial: #{ registration[:serial_num] }",
+      :body             => erb(:registration),
       :via => :smtp,
       :smtp => {
         :address          => 'smtp.sendgrid.net',
@@ -68,28 +69,29 @@ get '/home/?' do
   erb :home
 end
 
+get '/faq/?' do
+  erb :faq
+end
+
 get '/thanks/?' do
-  "You will get an email with your serial as soon as the Paypal goblins process your payment."
+  @message = "You will get an email with your serial as soon as the Paypal goblins process your payment."
+
+  erb :message
 end
 
 get '/cancel/?' do
-  "Oh noes, you didn't."
-end
+  @message = "Oh noes, you didn't."
 
-get '/test' do
-  @registration = Registration.new(:transaction => '1234', :serial_num => '5678', :email => 'mschoening@me.com')
-  @registration.save
+  erb :message
 end
 
 post '/ipn/?' do
-  params.update :cmd => '_notify-validate'
+  error(404, "Purchase not valid.") unless valid_purchase?(params)
 
-  if valid_purchase?(params)
-    @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
+  @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
 
-    if @registration.save
-      email_registration(@registration)
-    end
+  if @registration.save
+    email_registration(@registration)
   end
 end
 
