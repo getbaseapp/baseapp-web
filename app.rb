@@ -7,7 +7,8 @@ require 'rest-client'
 require 'sinatra/activerecord'
 require 'pony'
 require 'json'
-require 'warden'
+
+require 'authentication'
 
 STORE_CONFIG = YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
 
