@@ -13,5 +13,5 @@ if RUBY_PLATFORM =~ /darwin/
 end
 
 if RUBY_PLATFORM =~ /linux/
-  gem 'postgres', '0.7.9'
+  gem 'postgres'
 end
