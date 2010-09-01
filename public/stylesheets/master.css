@@ -148,7 +148,7 @@ header#welcome p {
 header#welcome ul li {
   float: left;
   line-height: 20px;
-  margin-left: -10px;
+  margin-left: -5px;
 }
 
 header#welcome ul li a {
@@ -590,4 +590,46 @@ footer p:first-child {
   text-align: center;
   line-height: 50px;
   font-size: 36px;
+}
+
+#confirmation div div {
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 0 -1px 1px #303;
+  line-height: 30px;
+  padding: 50px 50px 50px 200px;
+  background: #909 url(/images/logo.png) no-repeat 20px center;
+  background: url(/images/logo.png) no-repeat 20px center, -webkit-gradient(linear, 0% 0%, 0% 100%, from(#909), to(#606));
+  background: url(/images/logo.png) no-repeat 20px center, -moz-linear-gradient(top, #909, #606);
+  background: url(/images/logo.png) no-repeat 20px center, -o-linear-gradient(top, #909, #606);
+  background: url(/images/logo.png) no-repeat 20px center, linear-gradient(top, #909, #606);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, .5) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, .5) 0 1px 3px;
+  -o-box-shadow: rgba(0, 0, 0, .5) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, .5) 0 1px 3px;
+}
+
+#confirmation div div h1 {
+  font-size: 24px;
+}
+
+#confirmation #wrapper {
+  width: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -325px;
+  color: #333;
+}
+
+#confirmation a {
+  padding-right: 30px;
+  background: url(/images/back.png) no-repeat right center;
+  float: right;
+  line-height: 40px;
+  margin: 10px 40px;
 }

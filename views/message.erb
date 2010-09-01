@@ -1,3 +1,29 @@
-<p>
-  <%= @message %>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <title>BaseApp - Basecamp notifications delivered to your desktop</title>
+
+    <link rel="stylesheet" href="/stylesheets/master.css">
+
+    <script type="text/javascript" src="http://use.typekit.com/vyf3uzy.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body id="confirmation">
+    <div id="wrapper">
+      <div>
+        <h1><%= @message[:title] %></h1>
+
+        <p>
+          <%= @message[:content] %>
+        </p>
+      </div>
+
+      <p>
+        <a href="/">Return to homepage</a>
+      </p>
+    </div>
+  </body>
+</html>

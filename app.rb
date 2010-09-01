@@ -81,7 +81,7 @@ end
 get '/thanks/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = "You will get an email with your serial as soon as the Paypal goblins process your payment."
+  @message = { :title => "Thank you for your purchase", :content => "Your serial number was sent to your Paypal email address." }
 
   erb :message
 end
@@ -89,7 +89,7 @@ end
 get '/cancel/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = "Oh noes, you didn't."
+  @message = { :title => "Order Cancelled", :content => "Your order has been cancelled and you will not be billed." }
 
   erb :message
 end
