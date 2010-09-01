@@ -114,7 +114,7 @@ end
 get '/admin' do
   ensure_authenticated
 
-  haml :admin
+  erb :admin
 end
 
 post '/admin' do
@@ -123,6 +123,8 @@ post '/admin' do
   @registration = Registration.new(:transaction => "promo_#{ Time.now.to_i }", :serial_num => generate_serial_num, :email => params[:payer_email])
 
   if @registration.save
-    email_registration(@registration)
+    email_registration(@registration) unless params[:send_as_email].nil?
   end
+
+  erb :admin
 end
