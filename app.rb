@@ -7,6 +7,7 @@ require 'rest-client'
 require 'sinatra/activerecord'
 require 'pony'
 require 'json'
+require 'warden'
 
 STORE_CONFIG = YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
 
@@ -107,4 +108,10 @@ get '/activate/?' do
 
   json_string = { :serial_num => params[:serial_num] }.to_json
   OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
+end
+
+get '/admin' do
+  ensure_authenticated
+
+  haml :admin
 end
