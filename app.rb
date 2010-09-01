@@ -4,20 +4,9 @@ require 'sinatra'
 require 'yaml'
 require 'erb'
 require 'rest-client'
-require 'dm-core'
-require 'dm-migrations'
-require 'dm-timestamps'
-require 'dm-aggregates'
+require 'sinatra/activerecord'
 require 'pony'
 require 'json'
-
-configure :development do
-  require 'dm-sqlite-adapter'
-end
-
-configure :production do
-  require 'dm-postgres-adapter'
-end
 
 STORE_CONFIG = YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
 
@@ -68,18 +57,10 @@ helpers do
   end
 end
 
-DataMapper.setup(:default, (ENV["DATABASE_URL"] ||  "sqlite3://#{Dir.pwd}/development.sqlite"))
+set :database, ENV["DATABASE_URL"] || "sqlite://development.db"
 
-class Registration
-  include DataMapper::Resource
-
-  property :transaction,    String, :length => 255, :key => true
-  property :created_at,     DateTime
-  property :serial_num,     String, :length => 255
-  property :email,          String, :length => 255
+class Registration < ActiveRecord::Base
 end
-
-DataMapper.auto_upgrade!
 
 get '/home/?' do
   @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
@@ -95,6 +76,11 @@ get '/cancel/?' do
   "Oh noes, you didn't."
 end
 
+get '/test' do
+  @registration = Registration.new(:transaction => '1234', :serial_num => '5678', :email => 'mschoening@me.com')
+  @registration.save
+end
+
 post '/ipn/?' do
   params.update :cmd => '_notify-validate'
 
@@ -108,7 +94,7 @@ post '/ipn/?' do
 end
 
 get '/activate/?' do
-  error(404, "Serial doesn't exist.") if Registration.count(:serial_num => params[:serial_num]) == 0
+  error(404, "Serial doesn't exist.") unless Registration.exists?(:serial_num => params[:serial_num])
 
   json_string = { :serial_num => params[:serial_num] }.to_json
   OpenSSL::PKey::RSA.new(STORE_CERT_SERIAL).private_encrypt(json_string)
