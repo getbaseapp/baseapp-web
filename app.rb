@@ -64,22 +64,29 @@ class Registration < ActiveRecord::Base
 end
 
 get '/home/?' do
-  @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
 
+  @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
   erb :home
 end
 
 get '/faq/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
   erb :faq
 end
 
 get '/thanks/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
   @message = "You will get an email with your serial as soon as the Paypal goblins process your payment."
 
   erb :message
 end
 
 get '/cancel/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
   @message = "Oh noes, you didn't."
 
   erb :message
