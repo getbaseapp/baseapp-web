@@ -42,8 +42,8 @@ helpers do
     Pony.mail(
       :to               => registration[:email],
       :bcc              => 'mschoening@me.com',
-      :from             => '"BaseApp" <no-reply@getbaseapp.com>',
-      :subject          => "Baseapp 1.x Serial",
+      :from             => '"BaseApp" <support@getbaseapp.com>',
+      :subject          => "Your Baseapp Order (#{ registration[:transaction] })",
       :body             => erb(:registration),
       :via => :smtp,
       :smtp => {
