@@ -1,9 +1,11 @@
 class CreateRegistrations < ActiveRecord::Migration
   def self.up
     create_table :registrations do |t|
-      t.string :transaction
-      t.string :serial_num
-      t.string :email
+      t.primary_key   :id
+      t.string        :transaction
+      t.string        :serial_num
+      t.string        :email
+      t.timestamps
     end
   end
 

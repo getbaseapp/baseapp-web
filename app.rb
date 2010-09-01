@@ -37,13 +37,13 @@ helpers do
     rand(2**256).to_s(36)[0..24].upcase.scan(/.{5}/).to_a.join('-')
   end
 
-  def email_registration
+  def email_registration(registration)
     Pony.mail(
-      :to               => 'max@bylinebreak.com',
-      :cc               => 'max@bylinebreak.com',
+      :to               => registration[:email],
+      :cc               => 'mschoening@me.com',
       :from             => '"BaseApp" <no-reply@getbaseapp.com>',
       :subject          => "Baseapp 1.x Serial",
-      :body             => "This is your beautiful serial.",
+      :body             => "Here is your beautiful serial: #{ registration[:serial_num] }",
       :via => :smtp,
       :smtp => {
         :address          => 'smtp.sendgrid.net',
@@ -88,7 +88,7 @@ post '/ipn/?' do
     @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
 
     if @registration.save
-      email_registration
+      email_registration(@registration)
     end
   end
 end
