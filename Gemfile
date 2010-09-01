@@ -6,7 +6,6 @@ gem 'rest-client', '1.6.1'
 gem 'activerecord', '2.3.8'
 gem 'sinatra-activerecord', '0.1.2'
 gem 'pony', '1.0'
-gem 'haml'
 gem 'warden-googleapps', '0.1.1'
 
 if RUBY_PLATFORM =~ /darwin/
