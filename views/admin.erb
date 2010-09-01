@@ -2,6 +2,15 @@
 
 <hr />
 
+<% unless @registration.nil? %>
+  <ul>
+    <li>Order ID: <%= @registration[:transaction] %></li>
+    <li>Date: <%= @registration[:created_at] %></li>
+    <li>Product: BaseApp 1.x</li>
+    <li>Serial #: <%= @registration[:serial_num] %></li>
+  </ul>
+<% end %>
+
 <form action="/admin" method="post">
   <p>
     To generate a serial for someone just type in the email address and our nano bots will take care of the rest.
