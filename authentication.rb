@@ -6,7 +6,7 @@ enable :sessions
 use Warden::Manager do |manager|
   manager.default_strategies :google_apps
   manager.failure_app = BadAuthentication
-  manager[:google_apps_domain]   = 'getbaseapp.com'
+  manager[:google_apps_domain] = 'getbaseapp.com'
 end
 
 helpers do
@@ -20,6 +20,6 @@ end
 class BadAuthentication < Sinatra::Base
   get '/unauthenticated' do
     status 403
-    haml "%h3= 'Unable to authenticate, sorry dude.'"
+    erb "<h3>Unable to authenticate, sorry dude.</h3>"
   end
 end
