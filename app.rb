@@ -8,7 +8,7 @@ require 'sinatra/activerecord'
 require 'pony'
 require 'json'
 
-require 'authentication'
+require 'auth'
 
 STORE_CONFIG = YAML::load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
 
@@ -118,7 +118,7 @@ get '/admin' do
 end
 
 post '/admin' do
-  ensure_authenticated
+  #ensure_authenticated
 
   @registration = Registration.new(:transaction => "promo_#{ Time.now.to_i }", :serial_num => generate_serial_num, :email => params[:payer_email])
 
