@@ -4,6 +4,6 @@ require 'sinatra/activerecord/rake'
 
 task :cron do
  if Time.now.hour == 0
-   `heorku pgdumps:capture`
+   `heroku pgdumps:capture`
  end
 end
