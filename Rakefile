@@ -1,6 +1,8 @@
 require 'app'
 require 'sinatra/activerecord/rake'
 
+require 'heroku'
+
 desc 'Backup database'
 task(:backup_database) { backup_database }
 
