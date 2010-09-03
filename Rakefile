@@ -1,4 +1,5 @@
 require 'app'
+require 'rake'
 require 'sinatra/activerecord/rake'
 
 task :cron => :environment do
