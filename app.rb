@@ -65,10 +65,17 @@ set :database, ENV["DATABASE_URL"] || "sqlite://development.db"
 class Registration < ActiveRecord::Base
 end
 
+get '/?' do
+  @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon." }
+
+  erb :message
+end
+
 get '/home/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
   @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
+
   erb :home
 end
 
