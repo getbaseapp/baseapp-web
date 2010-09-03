@@ -2,7 +2,7 @@ require 'app'
 require 'sinatra/activerecord/rake'
 
 desc 'Backup database'
-task(:backup_database => :environment) { backup_database }
+task(:backup_database) { backup_database }
 
 desc 'cron'
 task :cron => :backup_database
