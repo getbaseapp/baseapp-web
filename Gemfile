@@ -15,3 +15,5 @@ end
 if RUBY_PLATFORM =~ /linux/
   gem 'postgres', '0.7.9.2008.01.28'
 end
+
+gem 'heroku'

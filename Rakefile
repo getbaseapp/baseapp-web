@@ -1,7 +1,8 @@
 require 'app'
-require 'rake'
 require 'sinatra/activerecord/rake'
 
+require 'heroku'
+
 task :cron do
-  `pgdumps:capture`
+  `heroku pgdumps:capture`
 end
