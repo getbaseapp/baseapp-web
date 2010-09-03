@@ -5,5 +5,5 @@ require 'heroku'
 
 desc 'cron'
 task :cron do
-  `pgdump`
+  `pg_dump`
 end
