@@ -66,7 +66,7 @@ class Registration < ActiveRecord::Base
 end
 
 get '/?' do
-  @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon." }
+  @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon.", :home => false }
 
   erb :message
 end
@@ -88,7 +88,7 @@ end
 get '/thanks/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = { :title => "Thank you for your purchase", :content => "Your serial number was sent to your Paypal email address." }
+  @message = { :title => "Thank you for your purchase", :content => "Your serial number was sent to your Paypal email address.", :home => true }
 
   erb :message
 end
@@ -96,7 +96,7 @@ end
 get '/cancel/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = { :title => "Order Cancelled", :content => "Your order has been cancelled and you will not be billed." }
+  @message = { :title => "Order Cancelled", :content => "Your order has been cancelled and you will not be billed.", :home => true }
 
   erb :message
 end

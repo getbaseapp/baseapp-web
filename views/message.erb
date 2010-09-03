@@ -21,9 +21,11 @@
         </p>
       </div>
 
-      <p>
-        <a href="/">Return to homepage</a>
-      </p>
+      <% if @message[:home] %>
+        <p>
+          <a href="/">Return to homepage</a>
+        </p>
+      <% end %>
     </div>
   </body>
 </html>
