@@ -66,6 +66,8 @@ class Registration < ActiveRecord::Base
 end
 
 get '/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
   @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon.", :home => false }
 
   erb :message
