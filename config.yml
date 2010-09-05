@@ -1,14 +1,14 @@
 :paypal:
   :form:
-    :amount: 7
-    :business: seller_1282060105_biz@bylinebreak.com
+    :amount: 7.00
+    :business: payments@bylinebreak.com
     :cmd: _xclick
     :discount_rate: 0
     :discount_rate2: 10
-    :cancel_return: http://baseapp.heroku.com/cancel/
-    :cert_id: S5ZHYZWK6WYBQ
+    :cancel_return: http://www.getbaseapp.com/cancel
+    :cert_id: CGLV62AYHWK7A
     :currency_code: EUR
     :item_name: BaseApp 1.x
-    :notify_url: http://baseapp.heroku.com/ipn/
-    :return: http://baseapp.heroku.com/thanks/
-  :url: https://www.sandbox.paypal.com/webscr
+    :notify_url: http://www.getbaseapp.com/ipn
+    :return: http://www.getbaseapp.com/thanks
+  :url: https://www.paypal.com/webscr

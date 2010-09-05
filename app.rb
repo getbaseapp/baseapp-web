@@ -30,7 +30,9 @@ helpers do
 
     if purchase == 'VERIFIED'
       expected = {
-        :payment_status => 'Completed'
+        :payment_status => 'Completed',
+        :receiver_email => STORE_CONFIG[:paypal][:form][:business],
+        :mc_gross => STORE_CONFIG[:paypal][:form][:amount]
       }
       expected.keys.all? { |key| params[key] == expected[key] }
     end
@@ -91,7 +93,7 @@ end
 get '/thanks/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = { :title => "Thank you for your purchase", :content => "Your serial number was sent to your Paypal email address.", :home => true }
+  @message = { :title => "Thank you for your purchase", :content => "Your serial number will be sent to your Paypal email address.", :home => true }
 
   erb :message
 end
