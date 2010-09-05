@@ -63,6 +63,7 @@ end
 set :database, ENV["DATABASE_URL"] || "sqlite://development.db"
 
 class Registration < ActiveRecord::Base
+  validates_uniqueness_of :transaction
 end
 
 get '/?' do
