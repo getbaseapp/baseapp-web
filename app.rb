@@ -107,13 +107,14 @@ get '/cancel/?' do
 end
 
 post '/ipn/?' do
-  error(404, "Purchase not valid.") unless valid_purchase?(params)
+  # error(404, "Purchase not valid.") unless valid_purchase?(params)
+  valid_purchase?(params)
 
-  @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
-
-  if @registration.save
-    email_registration(@registration)
-  end
+  # @registration = Registration.new(:transaction => params[:txn_id], :serial_num => generate_serial_num, :email => params[:payer_email])
+  #
+  # if @registration.save
+  #   email_registration(@registration)
+  # end
 end
 
 get '/activate/?' do
