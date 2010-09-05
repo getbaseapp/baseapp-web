@@ -32,7 +32,7 @@ helpers do
       expected = {
         :payment_status => 'Completed',
         :receiver_email => STORE_CONFIG[:paypal][:form][:business],
-        :mc_gross => '12.34'
+        :mc_gross => STORE_CONFIG[:paypal][:form][:amount].to_s
       }
       expected.keys.all? { |key| params[key] == expected[key] }
     end
