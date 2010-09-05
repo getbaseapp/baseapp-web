@@ -11,4 +11,4 @@
     :item_name: BaseApp 1.x
     :notify_url: http://www.getbaseapp.com/ipn
     :return: http://www.getbaseapp.com/thanks
-  :url: https://www.paypal.com/webscr
+  :url: https://www.paypal.com/cgi-bin/webscr
