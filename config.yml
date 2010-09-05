@@ -1,7 +1,7 @@
 :paypal:
   :form:
-    :amount: 0.01
-    :business: payments@bylinebreak.com
+    :amount: 12.34
+    :business: seller@paypalsandbox.com
     :cmd: _xclick
     :discount_rate: 0
     :discount_rate2: 10
