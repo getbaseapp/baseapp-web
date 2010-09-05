@@ -34,7 +34,7 @@
         <input id="encrypted" name="encrypted" type="hidden" value="<%= @form[:encrypted] %>" />
 
         <p>
-          <span class="label"><strong>Number of BaseApp licences:</strong> 10% off per additional license</span> <span class="q"><input id="quantity" name="quantity" type="text" value="1" /> <span><a id="q-more" href="#">More</a> <a id="q-less" href="#">less</a></span></span> <span class="calc">&times; &euro;7 = <strong>&euro;7</strong></span> <input id="submit" name="commit" type="submit" value="Buy" />
+          <span class="label"><strong>Number of BaseApp licences:</strong> 10% off per additional license</span> <span class="q"><input id="quantity" name="quantity" required="true" type="text" value="1" /> <span><a id="q-more" href="#more">More</a> <a id="q-less" href="#less">less</a></span></span> <span class="calc">&times; &euro;7 = <strong id="amount">&euro;<span>7</span></strong></span> <input id="submit" name="commit" type="submit" value="Buy" />
         </p>
       </form>
     </section>
