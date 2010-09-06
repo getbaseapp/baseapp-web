@@ -71,14 +71,6 @@ end
 get '/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon.", :home => false }
-
-  haml :message, :locals => { :body_id => "message" }
-end
-
-get '/home/?' do
-  response.headers['Cache-Control'] = 'public, max-age=31557600'
-
   @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
 
   haml :home, :locals => { :body_id => "home" }
@@ -97,6 +89,14 @@ get '/faq/?' do
 end
 
 get '/thanks/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
+  @message = { :title => "Thank you for your purchase", :content => "Your serial number will be sent to your Paypal email address.", :home => true }
+
+  haml :message, :locals => { :body_id => "message" }
+end
+
+post '/thanks/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
   @message = { :title => "Thank you for your purchase", :content => "Your serial number will be sent to your Paypal email address.", :home => true }
