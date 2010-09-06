@@ -27,7 +27,7 @@ $(function() {
 
     .change(function(e) {
       var amount   = quantityInput.quantity() * 7.0,
-          discount = (quantityInput.quantity() - 1) * 0.1;
+          discount = (quantityInput.quantity() - 1) * 7.0 * 0.1;
           total    = amount - discount;
 
       $("#amount span").replaceWith("<span>" + total + "</span>");
