@@ -592,7 +592,7 @@ footer p:first-child {
   font-size: 36px;
 }
 
-#confirmation div div {
+#message div div {
   font-size: 16px;
   color: #fff;
   text-shadow: 0 -1px 1px #303;
@@ -613,11 +613,11 @@ footer p:first-child {
   box-shadow: rgba(0, 0, 0, .5) 0 1px 3px;
 }
 
-#confirmation div div h1 {
+#message div div h1 {
   font-size: 24px;
 }
 
-#confirmation #wrapper {
+#message #wrapper {
   width: 650px;
   position: absolute;
   top: 50%;
@@ -626,7 +626,7 @@ footer p:first-child {
   color: #333;
 }
 
-#confirmation a {
+#message a {
   padding-right: 30px;
   background: url(/images/back.png) no-repeat right center;
   float: right;

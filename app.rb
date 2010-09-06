@@ -47,7 +47,7 @@ helpers do
       :to               => registration[:email],
       :bcc              => 'mschoening@me.com',
       :from             => '"BaseApp" <support@getbaseapp.com>',
-      :subject          => "Your Baseapp Order (#{ registration[:transaction] })",
+      :subject          => "Your BaseApp Order (#{ registration[:transaction] })",
       :body             => erb(:registration),
       :via => :smtp,
       :smtp => {
@@ -73,7 +73,7 @@ get '/?' do
 
   @message = { :title => "Coming Soon", :content => "We are working hard to release BaseApp soon.", :home => false }
 
-  erb :message
+  haml :message, :locals => { :body_id => "message" }
 end
 
 get '/home/?' do
@@ -81,13 +81,19 @@ get '/home/?' do
 
   @form = { :action => STORE_CONFIG[:paypal][:url], :encrypted => encrypt_values(STORE_CONFIG[:paypal][:form]) }
 
-  erb :home
+  haml :home, :locals => { :body_id => "home" }
+end
+
+get '/download/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
+  redirect 'http://linebreak.s3.amazonaws.com/baseapp/BaseApp1.0.zip'
 end
 
 get '/faq/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  erb :faq
+  haml :faq, :locals => { :body_id => "support" }
 end
 
 get '/thanks/?' do
@@ -95,7 +101,7 @@ get '/thanks/?' do
 
   @message = { :title => "Thank you for your purchase", :content => "Your serial number will be sent to your Paypal email address.", :home => true }
 
-  erb :message
+  haml :message, :locals => { :body_id => "message" }
 end
 
 get '/cancel/?' do
@@ -103,7 +109,7 @@ get '/cancel/?' do
 
   @message = { :title => "Order Cancelled", :content => "Your order has been cancelled and you will not be billed.", :home => true }
 
-  erb :message
+  haml :message, :locals => { :body_id => "message" }
 end
 
 post '/ipn/?' do
@@ -126,7 +132,7 @@ end
 get '/admin' do
   ensure_authenticated
 
-  erb :admin
+  haml :admin
 end
 
 post '/admin' do
@@ -138,5 +144,5 @@ post '/admin' do
     email_registration(@registration) unless params[:send_as_email].nil?
   end
 
-  erb :admin
+  haml :admin
 end

@@ -5,55 +5,45 @@ $(function() {
   });
 
   $("#q-more").click(function(e) {
-    productIncrement();
     e.preventDefault();
+    $(this).trigger("increment");
   });
 
   $("#q-less").click(function(e) {
-    productDecrement();
     e.preventDefault();
+    $(this).trigger("decrement");
   });
 
-  $("#quantity").keydown(function(event) {
-    var inputNode = $(this);
-    var currentValue = parseInt(inputNode.val());
+  var quantityInput = $("#quantity")
+    .extend({
+      quantity: function() {
+        return parseInt(quantityInput.val()) || 0
+      }
+    })
 
-    if (event.keyCode == 38) {
-      return productIncrement();
-    }
-    else if (event.keyCode == 40 && currentValue > 1) {
-      return productDecrement();
-    }
-  });
+    .keypress(function(e) {
+      window.setTimeout(function() { quantityInput.change(); }, 10);
+    })
 
-  function productIncrement() {
-    inputNode = $("#quantity");
-    if (typeof(parseInt(inputNode.val())) === typeof(1) &&
-      !isNaN(parseInt(inputNode.val()))) {
-        inputNode.val(parseInt(inputNode.val()) + 1);
-    }
-    else {
-      inputNode.val("1");
-    }
-    updateAmount(inputNode.val());
-  }
+    .change(function(e) {
+      var amount   = quantityInput.quantity() * 7.0,
+          discount = (quantityInput.quantity() - 1) * 0.1;
+          total    = amount - discount;
 
-  function productDecrement() {
-    inputNode = $("#quantity")
-    if (parseInt(inputNode.val()) > 1) {
-      inputNode.val(parseInt(inputNode.val()) - 1);
-    }
-    else if (! parseInt(inputNode.val())) {
-      inputNode.val(1);
-    }
-    updateAmount(inputNode.val());
-  }
+      $("#amount span").replaceWith("<span>" + total + "</span>");
+    });
 
-  function updateAmount(quantity) {
-    amount = quantity * 7.00;
-    discount = amount * 0.10;
-    total = amount - discount;
+  $("#paypal")
+    .bind('increment', function(e) {
+      quantityInput
+        .val(quantityInput.quantity() + 1)
+        .change();
+    })
 
-    $("#amount span").replaceWith("<span>" + total + "</span>");
-  }
+    .bind('decrement', function(e) {
+      quantityInput
+        .val(Math.max(1, quantityInput.quantity() - 1))
+        .change();
+    });
+
 });
