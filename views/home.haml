@@ -1,0 +1,119 @@
+%header#welcome
+  %h1
+    %a{ :href => "/" } <strong>Base</strong>App
+
+  %p
+    All the activity happening on your Basecamp accounts, delivered to your doorstep in a lightweight package.
+
+  %ul
+    %li.download
+      %a{ :href => "/download", :onClick => "javascript: pageTracker._trackPageview('/download');" }
+        %strong Download
+        14-day trial
+
+    %li.buy
+      %a{ :href => "#buy"}
+        %strong Buy for &euro;7
+        Pay with PayPal
+
+%section#buy
+  %form{ :action => @form[:action], :id => "paypal", :method => "post" }
+    %input{ :name => "cmd", :type => "hidden", :value => "_s-xclick" }
+    %input{ :name => "encrypted", :type => "hidden", :value => @form[:encrypted] }
+
+    %p <span class="label"><strong>Number of BaseApp licences:</strong> 10% off per additional license</span> <span class="q"><input id="quantity" name="quantity" required="true" type="text" value="1" /> <span><a id="q-more" href="#more">More</a> <a id="q-less" href="#less">Less</a></span></span> <span class="calc">&times; &euro;7 = <strong id="amount">&euro;<span>7</span></strong></span> <input id="submit" name="commit" type="submit" value="Buy" />
+
+%section#content
+  %section#main
+    %p#intro
+      BaseApp is a Mac OS X menubar application that helps you stay on top of everything that happens in your <a href="http://basecamphq.com/">Basecamp</a> accounts.
+
+    %ul#features
+      %li
+        :maruku
+          ##Feels right at home
+
+          Designed to be as minimalistic as possible, **BaseApp** feels right at home on Mac OS X. Running in your menu bar it feels like it&rsquo;s part of your Mac.
+
+      %li
+        :maruku
+          ##There when you need it
+
+          We worked very hard making sure you only see **BaseApp** when you need it. It sits in the background monitoring your Basecamp accounts for activity.
+
+      %li
+        :maruku
+          ##Give your inbox a break
+
+          We built **BaseApp** because our inbox was overflowing with Basecamp emails. Disable these notifications and let **BaseApp** take it from there.
+
+      %li
+        :maruku
+          ##Notifications
+
+          **BaseApp** supports [Growl](http://growl.info/) and/or sound notifications. It&rsquo;s up to you to customize the way _you_ want to be notified of new activity.
+
+    %h2 What people are saying about <strong>BaseApp</strong>
+
+    %p <cite><a href="#">Matt Gist</a>:</cite>
+
+    %blockquote
+      :maruku
+        Oh my, I am liking [@getbaseapp](http://twitter.com/getbaseapp) so far. I normally don't like menu bar app, but this one might just be a keeper.
+
+    %p <cite><a href="#">Chris Olson</a></cite>
+
+    %blockquote
+      :maruku
+        Received my [@getbaseapp](http://twitter.com/getbaseapp) beta! So far the interface is the best I have ever seen for a menubar application.
+
+  %section#sidebar
+    %p#linktofaq
+      %a{ :href => "/faq"} FAQ&rsquo;s &amp; Support
+
+    %h2 System Requirements
+
+    %p
+      Mac OS X 10.6 or later.
+
+    %h2 Changelog
+
+    %h3
+      BaseApp 1.0
+      %small August 18 2010
+
+    %ul
+      %li First version of BaseApp, fingers crossed!
+
+    %h2 About the team
+
+    %p
+      BaseApp is a collaboration between <a href="http://bylinebreak.com/">Linebreak</a> and <a href="http://madebyelephant.com/">Made by Elephant</a>:
+
+    %ul#team
+      %li#jon
+        %a{ :href => "http://twitter.com/ddrdark" }
+          %strong Jonatan Castro
+          Icon Design
+
+      %li#tim
+        %a{ :href => "http://twitter.com/maxvoltar" }
+          %strong Tim Van Damme
+          Interface &amp; Icon Design
+
+      %li#nick
+        %a{ :href => "http://twitter.com/nckplsn" }
+          %strong Nick Paulson
+          Development
+
+      %li#max
+        %a{ :href => "http://twitter.com/resetability" }
+          %strong Maximilian Schoening
+          Project Management
+
+%footer
+  %p
+    <strong>BaseApp</strong> is a Mac app made by <a href="http://bylinebreak.com/">Linebreak</a> and <a href="http://madebyelephant.com/">Made by Elephant</a>.
+
+  %p
+    Follow <a href="http://twitter.com/getbaseapp">@getbaseapp</a> on Twitter for the latest updates.

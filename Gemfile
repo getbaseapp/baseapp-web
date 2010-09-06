@@ -2,8 +2,8 @@ source :gemcutter
 
 gem 'sinatra', '1.0'
 
-gem 'haml', '3.0.18'
-gem 'maruku', '0.6.0'
+gem 'haml'
+gem 'maruku'
 gem 'rest-client', '1.6.1'
 gem 'activerecord', '2.3.8'
 gem 'sinatra-activerecord', '0.1.2'

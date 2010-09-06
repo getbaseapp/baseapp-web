@@ -1,0 +1,34 @@
+%h1 BaseApp Admin
+
+%hr/
+
+- unless @registration.nil?
+  %ul
+    %li
+      Order ID:
+      = @registration[:transaction]
+    %li
+      Date:
+      = @registration[:created_at]
+    %li
+      Product: BaseApp 1.x
+    %li
+      Serial #:
+      = @registration[:serial_num]
+
+%form{ :action => "/admin", :method => "post" }
+  %p
+    To generate a serial for someone just type in the email address and our nano bots will take care of the rest.
+
+  %p
+    %label{ :for => "email" } Email:
+
+    %input{ :id => "email", :name => "email", :type => "text" }/
+
+  %p
+    %label{ :for => "send_as_email" } Send as Email
+
+    %input{ :id => "send_as_email", :name => "send_as_email", :type => "checkbox" }/
+
+  %p
+    %input{ :name => "submit", :type => "submit", :value => "Register Serial" }/
