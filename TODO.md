@@ -3,8 +3,10 @@ BASEAPP (http://baseapp.heroku.com)
 
 Application
 -------------------------------------------------
+[ ] Validate Paypal response with additional values @max
+[ ] Handle email bounces @max
+[ ] Handle exceptions @max
 [x] Validate model @max
-[x] Validate Paypal response with additional values @max
 [x] Add caching to the home and faq view @max
 [x] Add expected values for IPN parameters @max
 [x] Email serial to correct address @max
@@ -13,5 +15,8 @@ Application
 
 Views
 -------------------------------------------------
+[ ] Update copy for better sales @max
+[ ] Show that we will use your PayPal email @max
+[ ] Open support page @max
 [x] Cancellation and success views @tim
-[ ] Include javascript stepper @max
+[x] Include javascript stepper @max
