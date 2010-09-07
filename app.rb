@@ -131,7 +131,7 @@ end
 get '/admin' do
   ensure_authenticated
 
-  haml :admin
+  haml :admin, :layout => false
 end
 
 post '/admin' do
@@ -143,5 +143,5 @@ post '/admin' do
     email_registration(@registration) unless params[:send_as_email].nil?
   end
 
-  haml :admin
+  haml :admin, :layout => false
 end
