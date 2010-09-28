@@ -18,8 +18,9 @@
 
 %section#buy
   %form{ :action => @form[:action], :id => "paypal", :method => "post" }
-    %input{ :name => "cmd", :type => "hidden", :value => "_s-xclick" }
-    %input{ :name => "encrypted", :type => "hidden", :value => @form[:encrypted] }
+    %input{ :name => "cmd", :type => "hidden", :value => "_s-xclick" }/
+    %input{ :name => "lc", :type => "hidden", :value => "US" }/
+    %input{ :name => "encrypted", :type => "hidden", :value => @form[:encrypted] }/
 
     %p <span class="label"><strong>Number of BaseApp licences:</strong> 10% off on each additional license</span> <span class="q"><input id="quantity" name="quantity" required="true" type="text" value="1" /> <span><a id="q-more" href="#more">More</a> <a id="q-less" href="#less">Less</a></span></span> <span class="calc">&times; &euro;7 = <strong id="amount">&euro;<span>7</span></strong></span> <input id="submit" name="commit" type="submit" value="Buy" />
 
