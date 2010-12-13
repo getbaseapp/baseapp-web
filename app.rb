@@ -78,7 +78,7 @@ end
 get '/download/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  redirect 'http://baseapp.s3.amazonaws.com/BaseApp1.0.3.zip'
+  redirect 'http://baseapp.s3.amazonaws.com/Base1.0.4.zip'
 end
 
 get '/faq/?' do
