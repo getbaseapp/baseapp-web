@@ -1,9 +1,0 @@
-#wrapper
-  %div
-    %h1= @message[:title]
-
-    %p= @message[:content]
-
-  - if @message[:home]
-    %p
-      %a{ :href => "/" } Return to homepage
