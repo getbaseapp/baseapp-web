@@ -9,6 +9,12 @@ get '/?' do
   haml :home, :locals => { :body_id => "home" }
 end
 
+get '/mas/?' do
+  response.headers['Cache-Control'] = 'public, max-age=31557600'
+
+  redirect '#'
+end
+
 get '/download/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
