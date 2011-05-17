@@ -12,7 +12,7 @@ end
 get '/mas/?' do
   response.headers['Cache-Control'] = 'public, max-age=31557600'
 
-  redirect '#'
+  redirect 'http://itunes.apple.com/us/app/baseapp/id437385415?mt=12&ls=1'
 end
 
 get '/download/?' do
